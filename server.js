@@ -2,7 +2,7 @@
 
 // console.log("Hello World") //node server.js (for run)
 
-const fs = require("fs");
+// const fs = require("fs");
 
 // ====== Read DIrectory ===
 // fs.readdir('./',(err,dir)=>{
@@ -31,20 +31,20 @@ const fs = require("fs");
 //                 console.log(" Appended Done")
 //             }
 // })
-let book = [
-  {
-    id: 01,
-    name: "Hamza",
-  },
-  {
-    id: 02,
-    name: "Talha",
-  },
-  {
-    id: 03,
-    name: "Anas",
-  },
-];
+// let book = [
+//   {
+//     id: 1,
+//     name: "Hamza",
+//   },
+//   {
+//     id: 2,
+//     name: "Talha",
+//   },
+//   {
+//     id: 3,
+//     name: "Anas",
+//   },
+// ];
 // const http = require('http')
 // const server = http.createServer((req,res)=>{
 //     console.log("CHal gya")
@@ -112,15 +112,15 @@ let book = [
 // })
 
 const express = require("express");
-require("dotenv").config();
 const mongoose = require("mongoose");
-const app = express();
 const cors = require("cors");
+require("dotenv").config();
 const StudentRouter = require("./routes/studentRouter");
 const TeacherRouter = require("./routes/teacherRouter");
 const InstituteRouter = require("./routes/instituteRouter");
 const courseRouter = require("./routes/courseRouter");
 const userRoutes = require("./routes/userRoutes");
+const app = express();
 app.use(express.json());
 app.use(cors());
 app.use("/api/student", StudentRouter);
@@ -128,13 +128,18 @@ app.use("/api/teacher", TeacherRouter);
 app.use("/api/institute", InstituteRouter);
 app.use("/api/course", courseRouter);
 app.use("/api/user", userRoutes);
-console.log("connection sucessfull");
+
+app.get("/", (req, res) => {
+  res.send("Server Started");
+});
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
-    console.log("database Connected SucessFully");
     app.listen(process.env.PORT, () => {
-      console.log("server is listning on the port 5000");
+      console.log(
+        "Database Connected Successfully and server is listening on this port 5000"
+      );
     });
   })
   .catch((err) => {
