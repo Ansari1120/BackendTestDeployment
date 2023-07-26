@@ -1,6 +1,4 @@
-{
-    "course": [{
-      "path": "/api/course",
-      "schedule": "0 10 * * *"
-    }]
-  }
+
+    {
+        "rewrites": [{ "source": "/api/(.*)", "destination": "/api" }]
+      }
