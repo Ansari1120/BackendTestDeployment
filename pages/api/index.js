@@ -1,10 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const courseRouter = require("./routes/courseRouter");
-const userRoutes = require("./routes/userRoutes");
-const StudentRouter = require("./routes/studentRouter");
-const TeacherRouter = require("./routes/teacherRouter");
-const InstituteRouter = require("./routes/instituteRouter");
+const courseRouter = require("../../routes/courseRouter");
+const userRoutes = require("../../rroutes/userRoutes");
+const StudentRouter = require("../../rroutes/studentRouter");
+const TeacherRouter = require("../../rroutes/teacherRouter");
+const InstituteRouter = require("../../rroutes/instituteRouter");
 const cors = require("cors");
 require("dotenv").config();
 
@@ -36,4 +36,3 @@ mongoose
   });
 
 module.exports = app;
-  
