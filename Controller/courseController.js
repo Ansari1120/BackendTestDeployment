@@ -1,3 +1,6 @@
+const CourseModel = require("../models/CourseModel");
+const sendResponse = require("../Helper/Helper");
+
 const Controller = {
   GetCourse: async (req, res) => {
     try {
