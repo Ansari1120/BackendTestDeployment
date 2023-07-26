@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const serverless = require("serverless-http");
 const courseRouter = require("./routes/courseRouter");
 const userRoutes = require("./routes/userRoutes");
 const StudentRouter = require("./routes/studentRouter");
@@ -18,12 +19,11 @@ app.use("/api/institute", InstituteRouter);
 app.use("/api/course", courseRouter);
 app.use("/api/user", userRoutes);
 
-app.get("/", (req, res) => {
+app.get("/.netlify/functions/actions", (req, res) => {
   res.send("Server Started");
 });
-
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(`${process.env.MONGO_URI}/${process.env.DB_NAME}`)
   .then(() => {
     app.listen(process.env.PORT, () => {
       console.log(
@@ -34,3 +34,5 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
+
+module.exports.handler = serverless(app);
